@@ -1,0 +1,25 @@
+MsExcel columns has a pattern like
+A B C … Z
+AA AB AC…. AZ BA BB … ZZ
+AAA AAB
+A has code 1
+Z has code 26
+AA has code 27
+AAA has code 626
+given a number return a column name as string
+
+private string GetExcelColumnName(int columnNumber)
+{
+    int dividend = columnNumber;
+    string columnName = String.Empty;
+    int modulo;
+
+    while (dividend > 0)
+    {
+        modulo = (dividend - 1) % 26;
+        columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
+        dividend = (int)((dividend - modulo) / 26);
+    } 
+
+    return columnName;
+}
